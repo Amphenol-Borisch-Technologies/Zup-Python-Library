@@ -2,7 +2,7 @@
 # "Python" is a registered trademark of the Python Software Foundation.
 # pySerial Copyrighted by Chris Liechti.
 # pytest Copyrighted by Holger Krekel and pytest-dev team.
-# Script Copyright Amphenol Borisch Technologies, 2022
+# This script Copyright Amphenol Borisch Technologies, 2022
 
 import time
 import serial # https://pypi.org/project/pyserial/ & https://pyserial.readthedocs.io/en/latest/pyserial.html

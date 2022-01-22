@@ -2,7 +2,7 @@
 # "Python" is a registered trademark of the Python Software Foundation.
 # pySerial Copyrighted by Chris Liechti.
 # pytest Copyrighted by Holger Krekel and pytest-dev team.
-# Script Copyright Amphenol Borisch Technologies, 2022
+# This script Copyright Amphenol Borisch Technologies, 2022
 # - https://www.borisch.com/
 #
 # Pytest tests for class Zup.
