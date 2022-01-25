@@ -3,6 +3,7 @@
 # pySerial Copyrighted by Chris Liechti.
 # pytest Copyrighted by Holger Krekel and pytest-dev team.
 # This script Copyright Amphenol Borisch Technologies, 2022
+# - https://www.borisch.com/
 
 import time
 import serial # https://pypi.org/project/pyserial/ & https://pyserial.readthedocs.io/en/latest/pyserial.html
