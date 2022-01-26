@@ -9,18 +9,18 @@ import serial # https://pythonhosted.org/pyserial/#
 from Zup import Zup
 
 # For this example script, used below Zups:
-# Address        Model:
+# Address     Model:
 # -------    --------------
-#    1        Zup(20V-20A)
-#    2        Zup(20V-10A)
-#    3        Zup(20V-10A)
-#    4        Zup(20V-10A)
-#    5        Zup(20V-10A)
-#    6        Zup(36V-6A)
+#    1     Zup(20V-20A)
+#    2     Zup(20V-10A)
+#    3     Zup(20V-10A)
+#    4     Zup(20V-10A)
+#    5     Zup(20V-10A)
+#    6     Zup(36V-6A)
 serial_port = serial.Serial(port='COM1', baudrate=9600, bytesize=serial.EIGHTBITS,
-                            parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,
-                            timeout=10, xonxoff=True, rtscts=False,
-                            write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
+                parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,
+                timeout=10, xonxoff=True, rtscts=False,
+                write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
 
 zups = {}
 for address in range(1,7,1): zups.update({address : Zup(address, serial_port)})
@@ -35,16 +35,16 @@ for address in range(1,7,1): zups.update({address : Zup(address, serial_port)})
 #   - Instantiating a Zup object literally only establishes communication with it.
 #   - Whatever prior state a Zup has before __init__() executes remains entirely intact after execution:
 #     - If a Zup's power was set to 5.0V/1.0A with output on before __init__() executes, it will be powered
-#       on identically at 5.0V/1.0A after __init__().
+#    on identically at 5.0V/1.0A after __init__().
 #     - It may seem counter-intuitive, but this behavior is actually useful & preferable to performing
-#       any other initializations during __init__().
-#   - Use Zup class methods to individually configure specific Zup states; set power output off or on, 
+#    any other initializations during __init__().
+#   - Use Zup class methods to individually configure specific Zup states; set power output off or on,
 #     change voltage/amperage, etc.
 #   - Or, Zup.configure() can be invoked to generically configure a Zup supply with multiple settings if desired.
 
 for address in zups: zups[address].clear_registers()
 # Clears Zup communication & alarm registers.
-# It would seem sensible to include this in Zup.__init__(), but that would erase any existing register 
+# It would seem sensible to include this in Zup.__init__(), but that would erase any existing register
 # alarms when re-connecting to Zups, preventing appropriate actions to accomodate them.
 # But for our purposes here clearing without first reading is preferable, as we don't care about
 # prior behavior, but instead just want to get on with present/future behavior.
@@ -55,11 +55,11 @@ for address in zups: zups[address].set_power('Off')
 # as simultaneously as possible, as is typically desirable.
 
 for address in zups:
-    zups[address].set_under_voltage_protection(zups[address].UVP['min'])    
+    zups[address].set_under_voltage_protection(zups[address].UVP['min'])
     zups[address].set_over_voltage_protection(zups[address].OVP['MAX'])
 # Set Zup UVPs/OVPs to their specific min/MAX values so we can most easily set voltages afterwards.
 # - Setting UVP/OVP is best performed by first setting UVP = UVP['min'], OVP = OVP['MAX'],
-#   then setting desired Voltage, then finally resetting UVP/OVP to desired values so 
+#   then setting desired Voltage, then finally resetting UVP/OVP to desired values so
 #   UVP/OVP values don't interfere with setting Voltages.  More on this shortly.
 
 zups[1].set_voltage(3.3)   ;  zups[1].set_amperage(1.0)
@@ -75,10 +75,10 @@ for address in (1,2,6):
     zups[address].set_over_voltage_protection( zups[address].get_voltage_set() * 1.10)
 # Above sets UVPs/OVPs to 90%/110% of current set voltages.
 # - Note that below inequality *always* applies between UVP, Voltage & OVP:
-#        UVP['min'] ≤ UVP ⪅ Voltage*95% ⪅ Voltage ⪅ Voltage*105% ⪅ OVP ≤ OVP['MAX']
+#     UVP['min'] ≤ UVP ⪅ Voltage*95% ⪅ Voltage ⪅ Voltage*105% ⪅ OVP ≤ OVP['MAX']
 #   - The ⪅ symbol denotes less than or approximately equal.
 #   - The ±5% difference is approximate, possibly due to roundoff in the Zup; safer to use ≥ ±7.5%.
-#   - Violating above inequality doesn't end well, hence set UVP/OVP to min/MAX, set desired Voltage, 
+#   - Violating above inequality doesn't end well, hence set UVP/OVP to min/MAX, set desired Voltage,
 #     then reset UVP/OVP appropriately.
 
 for address in (1,2,6): zups[address].set_power('On')
