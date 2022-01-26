@@ -115,40 +115,40 @@ def test_MODELS() -> None:
        return None
 
 def test__init__fails_() -> None:
-        sp = serial.Serial(port='COM1', baudrate=115200, bytesize=serial.EIGHTBITS,
-                           parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True, 
-                           rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
-        assert 1 in Zup.ADDRESS_RANGE
-        assert 115200 not in Zup.BAUD_RATES
-        with pytest.raises(ValueError):
-            z = Zup(1, sp)
+       sp = serial.Serial(port='COM1', baudrate=115200, bytesize=serial.EIGHTBITS,
+                          parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True, 
+                          rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
+       assert 1 in Zup.ADDRESS_RANGE
+       assert 115200 not in Zup.BAUD_RATES
+       with pytest.raises(ValueError):
+              z = Zup(1, sp)
 
-        assert 9600 in Zup.BAUD_RATES
-        sp.baudrate = 9600
-        assert '1' not in Zup.ADDRESS_RANGE
-        with pytest.raises(TypeError):
-            z = Zup('1', sp)
+       assert 9600 in Zup.BAUD_RATES
+       sp.baudrate = 9600
+       assert '1' not in Zup.ADDRESS_RANGE
+       with pytest.raises(TypeError):
+              z = Zup('1', sp)
 
-        assert 42 not in Zup.ADDRESS_RANGE # A nod to Deep Thought...
-        with pytest.raises(ValueError):
-            z = Zup(42, sp)
-        sp.close()
-        return None
+       assert 42 not in Zup.ADDRESS_RANGE # A nod to Deep Thought...
+       with pytest.raises(ValueError):
+              z = Zup(42, sp)
+       sp.close()
+       return None
 
 @pytest.fixture(scope='session')
 def serial_port() -> serial:
-    serial_port = serial.Serial(port='COM1', baudrate=9600, bytesize=serial.EIGHTBITS,
-                                parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True, 
-                                rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
-    return serial_port
+       serial_port = serial.Serial(port='COM1', baudrate=9600, bytesize=serial.EIGHTBITS,
+                                   parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True, 
+                                   rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
+       return serial_port
 
 @pytest.fixture(params=(1,2,3,4,5,6))
 def zup_address(request):
-    return request.param
+       return request.param
 
 @pytest.fixture
 def zup(zup_address, serial_port) -> Zup:
-    return Zup(zup_address, serial_port)
+       return Zup(zup_address, serial_port)
 
 def test__init__passes(zup: Zup) -> None:
        assert zup.address in Zup.ADDRESS_RANGE                                     ;  print(zup.address)
