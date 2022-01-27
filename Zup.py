@@ -352,9 +352,19 @@ class Zup(object):
         """ Reads ZUP Statuses
             Inputs:        None
             Outputs:       list[tuple], [(command, response), (command, response)...(command, response)]
-            ZUP commands:  (':MDL?;',':REV?;',':VOL!;',':VOL?;',':UVP?;',':OVP?;',':CUR!;',':CUR?;',':FLD?;',':RMT?;',':AST?;',':STA?;',':STP?;',':ALM?;',':SRV?;',':SRT?;',':SRF?;')
+            ZUP commands:  :MDL?;, :REV?;
+                           :VOL!;, :VOL?;, :UVP?;, :OVP?;
+                           :CUR!;, :CUR?;
+                           :FLD?;, :RMT?;, :AST?;
+                           :STA?;, :STP?;, :ALM?;
+                           :SRV?;, :SRT?;, :SRF?;
         """
-        return self.issue_commands_read_responses((':MDL?;',':REV?;',':VOL!;',':VOL?;',':UVP?;',':OVP?;',':CUR!;',':CUR?;',':FLD?;',':RMT?;',':AST?;',':STA?;',':STP?;',':ALM?;',':SRV?;',':SRT?;',':SRF?;'))
+        return self.issue_commands_read_responses((':MDL?;',':REV?;',
+                                                   ':VOL!;',':VOL?;',':UVP?;',':OVP?;',
+                                                   ':CUR!;',':CUR?;',
+                                                   ':FLD?;',':RMT?;',':AST?;',
+                                                   ':STA?;',':STP?;',':ALM?;',
+                                                   ':SRV?;',':SRT?;',':SRF?;'))
 
     def issue_commands_read_responses(self, commands: tuple) -> list:
         """ Writes ZUP commands & reads applicable responses

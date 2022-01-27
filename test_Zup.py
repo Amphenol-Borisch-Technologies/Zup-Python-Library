@@ -15,7 +15,7 @@
        - https://pyserial.readthedocs.io/en/latest/pyserial.html
     - pytest library:
        - https://docs.pytest.org/en/6.2.x/
-    
+
     Reference 'TDK-Lambda Zup Power Supplies User Manual, IA549-04-01R', especially Chapter 5, 'RS232 & RS485 Remote Control':
       - https://product.tdk.com/system/files/dam/doc/product/power/switching-power/prg-power/instruction_manual/zup-user-manual.pdf
 """
@@ -173,13 +173,12 @@ def test__init__passes(zup: Zup) -> None:
     return None
 
 def test__del__(zup: Zup) -> None:
-    pass
     # Confirmed Zup.__del__() did not execute when Python's garbage collector was solely depended upon.
     # Confirmed Zup.__del__() did execute when Zup objects were explicitly deleted; 'del zup'.
     zup._write_command(':RMT2;')
     zup._write_command(':RMT?;')
     assert zup._read_response() == 'RM2'
-    assert zup.__del__() == None
+    assert zup.__del__() is None
     zup._write_command(':RMT?;')
     assert zup._read_response() == 'RM1'
     zup._write_command(':RMT2;')
@@ -193,7 +192,7 @@ def test__str__(zup: Zup) -> None:
     return None
 
 def test_configure(zup: Zup) -> None:
-    assert zup.configure() == None
+    assert zup.configure() is None
     return None
 
 def test_set_under_voltage_protection(zup: Zup) -> None:
@@ -203,7 +202,7 @@ def test_set_under_voltage_protection(zup: Zup) -> None:
         zup.set_under_voltage_protection(zup.UVP['min'] - 1)
     print(zup.UVP['min'] - 1)
     zup._write_command(':OUT0;')
-    assert zup.set_under_voltage_protection(zup.UVP['min']) == None
+    assert zup.set_under_voltage_protection(zup.UVP['min']) is None
     zup._write_command(':UVP?;')
     up = zup._read_response()
     assert 'UP' in up                ;  print(up)
@@ -225,7 +224,7 @@ def test_set_over_voltage_protection(zup: Zup) -> None:
         zup.set_over_voltage_protection(zup.OVP['MAX'] + 1)
     print(zup.OVP['MAX'] + 1)
     zup._write_command(':OUT0;')
-    assert zup.set_over_voltage_protection(zup.OVP['MAX']) == None
+    assert zup.set_over_voltage_protection(zup.OVP['MAX']) is None
     zup._write_command(':OVP?;')
     op = zup._read_response()
     assert 'OP' in op                ;  print(op)
@@ -250,7 +249,7 @@ def test_set_amperage(zup: Zup) -> None:
     # So only test programmed current.
     zup._write_command(':OUT0;')
     a = zup.CUR['MAX'] / 2              ;  print(a)
-    assert zup.set_amperage(a) == None
+    assert zup.set_amperage(a) is None
     zup._write_command(':CUR!;')
     sa = zup._read_response()           ;  print(sa)
     assert 'SA' in sa
@@ -279,7 +278,7 @@ def test_set_voltage(zup: Zup) -> None:
 
     zup._write_command(':OUT1;')
     v = zup.VOL['MAX'] / 2              ;  print(v)
-    assert zup.set_voltage(v) == None
+    assert zup.set_voltage(v) is None
     zup._write_command(':VOL!;')
     sv = zup._read_response()           ;  print(sv)
     assert 'SV' in sv
@@ -313,7 +312,7 @@ def test_set_power(zup: Zup) -> None:
     zup._write_command(':OUT0;')
     v = zup.VOL['Format'].format(zup.VOL['MAX'] / 2) ;  print(v)
     zup._write_command(':VOL{};'.format(v))
-    assert zup.set_power('On') == None
+    assert zup.set_power('On') is None
     zup._write_command(':OUT?;')
     r = zup._read_response()                         ;  print(r)
     assert r == 'OT1'
@@ -367,7 +366,7 @@ def test_issue_commands_read_responses(zup: Zup) -> None:
     return None
 
 def test_set_autostart(zup: Zup) -> None:
-    assert zup.set_autostart('On') == None
+    assert zup.set_autostart('On') is None
     zup._write_command(':AST?;')
     r = zup._read_response()            ;  print(r)
     assert r == 'AS1'
@@ -384,7 +383,7 @@ def test_autostart_on(zup: Zup) -> None:
 def test_set_foldback(zup: Zup) -> None:
     with pytest.raises(ValueError):
         zup.set_foldback('This is not a valid Foldback state, so should fail.')
-    assert zup.set_foldback('Arm') == None
+    assert zup.set_foldback('Arm') is None
     zup._write_command(':FLD?;')
     r = zup._read_response()            ;  print(r)
     # Doesn't test 'Release' capability.
@@ -416,7 +415,7 @@ def test_get_revision(zup: Zup) -> None:
     return None
 
 def test_clear_registers(zup: Zup) -> None:
-    assert zup.clear_registers() == None
+    assert zup.clear_registers() is None
     ps = zup.get_register_program()           ;  print(ps)
     assert type(ps) == str
     assert ps == 'PS00000'
@@ -442,19 +441,19 @@ def test_clear_registers(zup: Zup) -> None:
 def test_get_register_alarm(zup: Zup) -> None:
     reg = zup.get_register_alarm()         ;  print(reg)
     assert type(reg) == str
-    assert format_test(reg, 'AL01010', ('0','1')) == None
+    assert format_test(reg, 'AL01010', ('0','1')) is None
     return None
 
 def test_get_register_operation(zup: Zup) -> None:
     reg = zup.get_register_operation()     ;  print(reg)
     assert type(reg) == str
-    assert format_test(reg, 'OS00010000', ('0','1')) == None
+    assert format_test(reg, 'OS00010000', ('0','1')) is None
     return None
 
 def test_get_register_program(zup: Zup) -> None:
     reg = zup.get_register_program()       ;  print(reg)
     assert type(reg) == str
-    assert format_test(reg, 'PS00000', ('0','1')) == None
+    assert format_test(reg, 'PS00000', ('0','1')) is None
     return None
 
 def format_test(reg: str, reg_format: str, valid_chars: tuple) -> None:
@@ -467,7 +466,7 @@ def format_test(reg: str, reg_format: str, valid_chars: tuple) -> None:
 def test_set_remote_mode(zup: Zup) -> None:
     with pytest.raises(ValueError):
         zup.set_remote_mode('This is not a valid Remote state, so should fail.')
-    assert zup.set_remote_mode('Remote Unlatched') == None
+    assert zup.set_remote_mode('Remote Unlatched') is None
     zup._write_command(':RMT?;')
     r = zup._read_response()            ;  print(r)
     assert r== 'RM1'
@@ -482,7 +481,7 @@ def test_remote_latched(zup: Zup) -> None:
     return None
 
 def test_set_service_request_over_voltage(zup: Zup) -> None:
-    assert zup.set_service_request_over_voltage('On') == None
+    assert zup.set_service_request_over_voltage('On') is None
     zup._write_command(':SRV?;')
     r = zup._read_response()            ;  print(r)
     assert r == 'QV1'
@@ -497,7 +496,7 @@ def test_service_request_over_voltage_on(zup: Zup) -> None:
     return None
 
 def test_set_service_request_over_temperature(zup: Zup) -> None:
-    assert zup.set_service_request_over_temperature('On') == None
+    assert zup.set_service_request_over_temperature('On') is None
     zup._write_command(':SRT?;')
     r = zup._read_response()            ;  print(r)
     assert r == 'QT1'
@@ -512,7 +511,7 @@ def test_service_request_over_temperature_on(zup: Zup) -> None:
     return None
 
 def test_set_service_request_foldback(zup: Zup) -> None:
-    assert zup.set_service_request_foldback('On') == None
+    assert zup.set_service_request_foldback('On') is None
     zup._write_command(':SRF?;')
     r = zup._read_response()            ;  print(r)
     assert r == 'QF1'
@@ -553,7 +552,7 @@ def test__read_response(zup: Zup) -> None:
     return None
 
 def test__write_command(zup: Zup) -> None:
-    assert zup._write_command(':MDL?;') == None
+    assert zup._write_command(':MDL?;') is None
     r = zup.serial_port.readline().decode('utf-8')  ;  print(r)
     assert type(r) == str
     assert 'Lambda ZUP' in r
