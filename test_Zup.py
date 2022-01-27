@@ -136,19 +136,19 @@ def test__init__fails_() -> None:
     sp.close()
     return None
 
-@pytest.fixture(scope='session')
-def serial_port() -> serial:
-    serial_port = serial.Serial(port='COM1', baudrate=9600, bytesize=serial.EIGHTBITS,
-                  parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True,
-                  rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
-    return serial_port
+@pytest.fixture(name="serial_port",scope='session')
+def fixture_serial_port() -> serial:
+    sp = serial.Serial(port='COM1', baudrate=9600, bytesize=serial.EIGHTBITS,
+         parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,timeout=10, xonxoff=True,
+         rtscts=False, write_timeout=10, dsrdtr=False, inter_byte_timeout=None)
+    return sp
 
-@pytest.fixture(params=(1,2,3,4,5,6))
-def zup_address(request):
+@pytest.fixture(name="zup_address",params=(1,2,3,4,5,6))
+def fixture_zup_address(request):
     return request.param
 
-@pytest.fixture
-def zup(zup_address, serial_port) -> Zup:
+@pytest.fixture(name="zup")
+def fixture_zup(zup_address, serial_port) -> Zup:
     return Zup(zup_address, serial_port)
 
 def test__init__passes(zup: Zup) -> None:

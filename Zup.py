@@ -636,6 +636,7 @@ class Zup(object):
         # pySerial library requires UTF-8 byte encoding/decoding, not string.
         # Per Zup Manual, paragraph 5.6.3, Zups append '\r\n' to their responses; remove them.
 
+    @staticmethod
     def _validate_binary_state(state: str) -> str:
         """ Internal method to error check ('Off', 'On') states
             Not intended for external use.
