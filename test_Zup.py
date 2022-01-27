@@ -308,7 +308,7 @@ def test_get_voltage_set(zup: Zup) -> None:
     return None
 
 def test_set_power(zup: Zup) -> None:
-    assert zup != None
+    assert zup is not None
     zup._write_command(':OUT0;')
     v = zup.VOL['Format'].format(zup.VOL['MAX'] / 2) ;  print(v)
     zup._write_command(':VOL{};'.format(v))
