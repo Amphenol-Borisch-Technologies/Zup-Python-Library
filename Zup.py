@@ -1,10 +1,13 @@
-# "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
-# "Python" is a registered trademark of the Python Software Foundation.
-# pySerial Copyrighted by Chris Liechti.
-# pytest Copyrighted by Holger Krekel and pytest-dev team.
-# This script Copyright Amphenol Borisch Technologies, 2022
-# - https://www.borisch.com/
+"""
+    "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
+    "Python" is a registered trademark of the Python Software Foundation.
+    pySerial Copyrighted by Chris Liechti.
+    pytest Copyrighted by Holger Krekel and pytest-dev team.
+    This script Copyright Amphenol Borisch Technologies, 2022
+    - https://www.borisch.com/
 
+    Zup class.
+"""
 import time
 import serial # https://pypi.org/project/pyserial/ & https://pyserial.readthedocs.io/en/latest/pyserial.html
 

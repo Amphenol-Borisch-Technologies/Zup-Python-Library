@@ -1,23 +1,24 @@
-# "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
-# "Python" is a registered trademark of the Python Software Foundation.
-# pySerial Copyrighted by Chris Liechti.
-# pytest Copyrighted by Holger Krekel and pytest-dev team.
-# This script Copyright Amphenol Borisch Technologies, 2022
-# - https://www.borisch.com/
-#
-# Pytest tests for class Zup.
-# Dependencies:
-# - Functioning TDK-Lambda ZUP power supply(s) connected to PC via RS232 and/or RS485 serial.
-# - Class Zup's _write_command(command) & _read_response() methods are assumed to be bug-free.
-# - pySerial library:
-#    - https://pypi.org/project/pyserial/
-#    - https://pyserial.readthedocs.io/en/latest/pyserial.html
-# - pytest library:
-#    - https://docs.pytest.org/en/6.2.x/
-#
-# Reference 'TDK-Lambda Zup Power Supplies User Manual, IA549-04-01R', especially Chapter 5, 'RS232 & RS485 Remote Control':
-#   - https://product.tdk.com/system/files/dam/doc/product/power/switching-power/prg-power/instruction_manual/zup-user-manual.pdf
+"""
+    "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
+    "Python" is a registered trademark of the Python Software Foundation.
+    pySerial Copyrighted by Chris Liechti.
+    pytest Copyrighted by Holger Krekel and pytest-dev team.
+    This script Copyright Amphenol Borisch Technologies, 2022
+    - https://www.borisch.com/
 
+    Pytest tests for Zup class.
+    Dependencies:
+    - Functioning TDK-Lambda ZUP power supply(s) connected to PC via RS232 and/or RS485 serial.
+    - Class Zup's _write_command(command) & _read_response() methods are assumed to be bug-free.
+    - pySerial library:
+       - https://pypi.org/project/pyserial/
+       - https://pyserial.readthedocs.io/en/latest/pyserial.html
+    - pytest library:
+       - https://docs.pytest.org/en/6.2.x/
+    
+    Reference 'TDK-Lambda Zup Power Supplies User Manual, IA549-04-01R', especially Chapter 5, 'RS232 & RS485 Remote Control':
+      - https://product.tdk.com/system/files/dam/doc/product/power/switching-power/prg-power/instruction_manual/zup-user-manual.pdf
+"""
 import time
 import pytest # https://docs.pytest.org/en/6.2.x/
 import serial # https://pypi.org/project/pyserial/
