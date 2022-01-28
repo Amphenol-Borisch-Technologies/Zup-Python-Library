@@ -6,7 +6,7 @@
     This script Copyright Amphenol Borisch Technologies, 2022
     - https://www.borisch.com/
 
-    Example usage of Zup class.
+    Example usage of  Zup class.
 """
 import serial # https://pythonhosted.org/pyserial/#
 from Zup import Zup
