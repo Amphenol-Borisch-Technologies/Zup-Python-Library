@@ -1,10 +1,12 @@
 """
-    "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
-    "Python" is a registered trademark of the Python Software Foundation.
+    "TDK™", "TDK-Lambda™" & "ZUP™" are registered trademarks of the TDK Corporation.
+    "Python™" is a registered trademark of the Python Software Foundation.
     pySerial Copyrighted by Chris Liechti.
     pytest Copyrighted by Holger Krekel and pytest-dev team.
     This script Copyright Amphenol Borisch Technologies, 2022
     - https://www.borisch.com/
+
+    Zup class.
 
     Pytest tests for Zup class.
     Dependencies:
@@ -244,7 +246,6 @@ def test_set_amperage(zup: Zup) -> None:
         zup.set_amperage('Invalid Amperage')
     with pytest.raises(ValueError):
         zup.set_amperage(zup.CUR['MAX'] + 1)
-
     # Cannot test specific actual currents without also setting voltage and powering with a real load impedance.
     # So only test programmed current.
     zup._write_command(':OUT0;')
@@ -560,14 +561,13 @@ def test__write_command(zup: Zup) -> None:
     return None
 
 def test__validate_binary_state() -> None:
-    state = 'oFf'
-    state = Zup._validate_binary_state(state)
+    with pytest.raises(TypeError):
+        state = Zup._validate_binary_state(1)
+    with pytest.raises(ValueError):
+        state = Zup._validate_binary_state('Invalid binary state, so should fail.')
+    state = Zup._validate_binary_state('ofF')
     assert type(state) == str
     assert state == 'Off'
-    state = 'oN'
-    state = Zup._validate_binary_state(state)
+    state = Zup._validate_binary_state('oN')
     assert state == 'On'
-    state = 'This is not a valid binary state, so should fail.'
-    with pytest.raises(ValueError):
-        state = Zup._validate_binary_state(state)
     return None
