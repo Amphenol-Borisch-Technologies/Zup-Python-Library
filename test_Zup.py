@@ -217,7 +217,7 @@ def test_set_under_voltage_protection(zup: Zup) -> None:
 
 def test_get_under_voltage_protection(zup: Zup) -> None:
     up = zup.get_under_voltage_protection()   ;  print(up)
-    assert type(up) in (int, float)
+    assert type(up) == float
     assert (zup.UVP['min'] <= up <= zup.UVP['MAX'])
     return None
 
@@ -239,7 +239,7 @@ def test_set_over_voltage_protection(zup: Zup) -> None:
 
 def test_get_over_voltage_protection(zup: Zup) -> None:
     op = zup.get_over_voltage_protection() ;  print(op)
-    assert type(op) in (int, float)
+    assert type(op) == float
     assert (zup.OVP['min'] <= op <= zup.OVP['MAX'])
     return None
 
@@ -263,13 +263,13 @@ def test_set_amperage(zup: Zup) -> None:
 
 def test_get_amperage_actual(zup: Zup) -> None:
     aa = zup.get_amperage_actual()      ;  print(aa)
-    assert type(aa) in (int, float)
+    assert type(aa) == float
     assert (zup.CUR['min'] <= aa <= zup.CUR['MAX'])
     return None
 
 def test_get_amperage_set(zup: Zup) -> None:
     sa = zup.get_amperage_set()         ;  print(sa)
-    assert type(sa) in (int, float)
+    assert type(sa) == float
     assert (zup.CUR['min'] <= sa <= zup.CUR['MAX'])
     return None
 
@@ -300,13 +300,13 @@ def test_set_voltage(zup: Zup) -> None:
 
 def test_get_voltage_actual(zup: Zup) -> None:
     av = zup.get_voltage_actual()       ;  print(av)
-    assert type(av) in (int, float)
+    assert type(av) == float
     assert (zup.VOL['min'] <= av <= zup.VOL['MAX'])
     return None
 
 def test_get_voltage_set(zup: Zup) -> None:
     sv = zup.get_voltage_set()          ;  print(sv)
-    assert type(sv) in (int, float)
+    assert type(sv) == float
     assert (zup.VOL['min'] <= sv <= zup.VOL['MAX'])
     return None
 

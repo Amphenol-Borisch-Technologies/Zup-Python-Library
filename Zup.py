@@ -194,7 +194,7 @@ class Zup(object):
         self._write_command(':CUR?;')
         aa = self._read_response()    # aa = 'AA1.234'.
         aa = aa.replace('AA', '')     # aa = '1.234'
-        return float(aa)        # return 1.234
+        return float(aa)              # return 1.234
 
     def get_amperage_set(self) -> float:
         """ Reads ZUP amperage, programmed
@@ -205,7 +205,7 @@ class Zup(object):
         self._write_command(':CUR!;')
         sa = self._read_response()    # sa = 'SA1.234'.
         sa = sa.replace('SA', '')     # sa = '1.234'
-        return float(sa)        # return 1.234
+        return float(sa)              # return 1.234
 
     def set_voltage(self, volts: float) -> None:
         """ Programs ZUP voltage
@@ -238,7 +238,7 @@ class Zup(object):
         self._write_command(':VOL?;')
         av = self._read_response()   # av = 'AV05.12'.
         av = av.replace('AV', '')    # av = '05.12'
-        return float(av)          # return 5.12
+        return float(av)             # return 5.12
 
     def get_voltage_set(self) -> float:
         """ Reads ZUP voltage, actual
@@ -249,7 +249,7 @@ class Zup(object):
         self._write_command(':VOL!;')
         sv = self._read_response()   # sv = 'SV05.00'.
         sv = sv.replace('SV', '')    # sv = '05.00'
-        return float(sv)          # return 5.00
+        return float(sv)             # return 5.00
 
     def set_under_voltage_protection(self, volts: float)  -> None:
         """ Programs ZUP under-voltage limit
@@ -282,7 +282,7 @@ class Zup(object):
         self._write_command(':UVP?;')
         up = self._read_response()   # up = 'UP04.5'.
         up = up.replace('UP', '')    # up = '04.5'
-        return float(up)          # return 4.5
+        return float(up)             # return 4.5
 
     def set_over_voltage_protection(self, volts: float) -> None:
         """ Programs ZUP over-voltage limit
@@ -316,7 +316,7 @@ class Zup(object):
         self._write_command(':OVP?;')
         op = self._read_response()   # op = 'OP05.5'.
         op = op.replace('OP', '')    # op = '05.5'
-        return float(op)          # return 5.5
+        return float(op)             # return 5.5
 
     def set_power(self, state: str) -> None:
         """ Programs ZUP Power state
