@@ -1,6 +1,8 @@
 """
-    "TDK™", "TDK-Lambda™" & "Zup™" are registered trademarks of the TDK Corporation.
-    "Python™" is a registered trademark of the Python Software Foundation.
+Zup-Python-Library: control TDK-Lambda™ Zup™ power supplies programmatically via Python™
+
+"TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
+    "Python" is a registered trademark of the Python Software Foundation.
     pySerial Copyrighted by Chris Liechti.
     pytest Copyrighted by Holger Krekel and pytest-dev team.
     This script Copyright Amphenol Borisch Technologies, 2022
