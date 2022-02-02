@@ -1,4 +1,4 @@
-# Zup-Python-Library: control TDK-Lambda Zup power supplies programmatically via Python
+# Zup-Python-Library: control TDK-Lambda™ Zup™ power supplies programmatically via Python™
 "TDK", "TDK-Lambda" & "Zup" are registered trademarks of the TDK Corporation.
 
 "Python" is a registered trademark of the Python Software Foundation.
