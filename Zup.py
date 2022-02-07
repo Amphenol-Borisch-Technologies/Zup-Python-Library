@@ -530,7 +530,7 @@ class Zup(object):
               noticing if Zups don't function correctly.
             - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
               and perform event handling routines to respond to arising Service Requests.
-            
+
             From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
              - Since Service Request messages may be sent from any supply at any time,
                there is a chance they can collide with other messages from other supplies.
@@ -565,7 +565,7 @@ class Zup(object):
               noticing if Zups don't function correctly.
             - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
               and perform event handling routines to respond to arising Service Requests.
-            
+
             From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
              - Since Service Request messages may be sent from any supply at any time,
                there is a chance they can collide with other messages from other supplies.
@@ -600,7 +600,7 @@ class Zup(object):
               noticing if Zups don't function correctly.
             - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
               and perform event handling routines to respond to arising Service Requests.
-            
+
             From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
              - Since Service Request messages may be sent from any supply at any time,
                there is a chance they can collide with other messages from other supplies.
