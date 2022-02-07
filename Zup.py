@@ -461,32 +461,36 @@ class Zup(object):
         self._write_command(':DCL;')
         return None
 
-    def get_register_alarm(self) -> str:
+    def get_register_alarm(self) -> dict:
         """ Reads ZUP Alarm status register
             Inputs:       None
-            Outputs:      str, Alarm status register content
+            Outputs:      dict, Alarm status register content
             ZUP command:  :ALM?;
         """
         self._write_command(':ALM?;')
-        return self._read_response()
+        ra = self._read_response() # Format is 'AL12345', where # is the bit number.  See table 5.6 in Zup User Manual.
+        return {'ovp': int(ra[2]), 'otp': int(ra[3]), 'a/c_fail': int(ra[4]), 'fold': int(ra[5]), 'prog': int(ra[6])}
 
-    def get_register_operation(self) -> str:
+    def get_register_operation(self) -> dict:
         """ Reads ZUP Operational status register
             Inputs:       None
-            Outputs:      str, Operational status register content
+            Outputs:      dict, Operational status register content
             ZUP command:  :STA?;
         """
         self._write_command(':STA?;')
-        return self._read_response()
+        ro = self._read_response() # Format is 'OS12345678', where # is the bit number.  See table 5.5 in Zup User Manual.
+        return {'cc/cv': int(ro[2]), 'fold': int(ro[3]), 'ast': int(ro[4]), 'out'  : int(ro[5]),
+                'srf'  : int(ro[6]), 'srv' : int(ro[7]), 'srt': int(ro[8]), 'alarm': int(ro[9])}
 
-    def get_register_program(self) -> str:
+    def get_register_program(self) -> dict:
         """ Reads ZUP Programming status register
             Inputs:       None
-            Outputs:      str, Programming status register content
+            Outputs:      dict, Programming status register content
             ZUP command:  :STP?;
         """
         self._write_command(':STP?;')
-        return self._read_response()
+        rp = self._read_response() # Format is 'PS12345', where # is the bit number.  See table 5.7 in Zup User Manual.
+        return {'not_used': None, 'wrong_command': int(rp[3]), 'buffer_overflow': int(rp[4]), 'wrong_voltage': int(rp[5]), 'wrong_current': int(rp[6])}
 
     def set_remote_mode(self, state: str) -> None:
         """ Programs ZUP Remote state

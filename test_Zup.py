@@ -442,28 +442,59 @@ def test_clear_registers(zup: Zup) -> None:
     return None
 
 def test_get_register_alarm(zup: Zup) -> None:
-    reg = zup.get_register_alarm()         ;  print(reg)
-    assert type(reg) == str
-    assert format_test(reg, 'AL01010', ('0','1')) is None
+    zup._write_command(':DCL;')
+    ra = zup.get_register_alarm()  ;  print(ra)
+    assert type(ra) == dict
+    for bit in ra.values():
+        assert type(bit) == int
+        assert bit == 0
     return None
 
 def test_get_register_operation(zup: Zup) -> None:
-    reg = zup.get_register_operation()     ;  print(reg)
-    assert type(reg) == str
-    assert format_test(reg, 'OS00010000', ('0','1')) is None
+    zup._write_command(':DCL;')
+    zup._write_command(':FLD1;')
+    zup._write_command(':AST1;')
+    zup._write_command(':OUT1;')
+    zup._write_command(':SRF1;')
+    zup._write_command(':SRT1;')
+    zup._write_command(':SRV1;')
+    ro = zup.get_register_operation()  ;  print(ro)
+    assert type(ro) == dict
+    for bit in ro.values():
+        assert type(bit) == int
+    assert ro['cc/cv'] == 0
+    assert ro['fold'] == 1
+    assert ro['ast'] == 1
+    assert ro['out'] == 1
+    assert ro['srf'] == 1
+    assert ro['srt'] == 1
+    assert ro['srv'] == 1
+    assert ro['alarm'] == 0
+    zup._write_command(':DCL;')
+    zup._write_command(':FLD0;')
+    zup._write_command(':AST0;')
+    zup._write_command(':OUT0;')
+    zup._write_command(':SRF0;')
+    zup._write_command(':SRT0;')
+    zup._write_command(':SRV0;')
+    ro = zup.get_register_operation()
+    assert ro['cc/cv'] == 0
+    assert ro['fold'] == 0
+    assert ro['ast'] == 0
+    assert ro['out'] == 0
+    assert ro['srf'] == 0
+    assert ro['srt'] == 0
+    assert ro['srv'] == 0
+    assert ro['alarm'] == 0
     return None
 
 def test_get_register_program(zup: Zup) -> None:
-    reg = zup.get_register_program()       ;  print(reg)
-    assert type(reg) == str
-    assert format_test(reg, 'PS00000', ('0','1')) is None
-    return None
-
-def format_test(reg: str, reg_format: str, valid_chars: tuple) -> None:
-    assert len(reg) == len(reg_format)
-    assert reg[0:2] == reg_format[0:2]
-    for i in range(2, len(reg_format), 1):
-        assert reg[i] in valid_chars
+    zup._write_command(':DCL;')
+    rp = zup.get_register_program()  ;  print(rp)
+    assert type(rp) == dict
+    for bit in rp.values():
+        assert type(bit) == int
+        assert bit == 0
     return None
 
 def test_set_remote_mode(zup: Zup) -> None:
