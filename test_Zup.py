@@ -419,26 +419,26 @@ def test_get_revision(zup: Zup) -> None:
 
 def test_clear_registers(zup: Zup) -> None:
     assert zup.clear_registers() is None
-    ps = zup.get_register_program()           ;  print(ps)
-    assert type(ps) == str
-    assert ps == 'PS00000'
+    zup._write_command(':STP?;')
+    rp = zup._read_response()                 ;  print(rp) # Format is 'PS12345'
+    assert type(rp) == str
+    assert rp[5] == '0'
+    assert rp[6] == '0'
     v_over_max = zup.VOL['MAX'] + 1           ;  print(v_over_max)
     v = zup.VOL['Format'].format(v_over_max)  ;  print(v)
     zup._write_command(':VOL{};'.format(v))
-    ps = zup.get_register_program()           ;  print(ps)
-    assert ps == 'PS00010'
-    zup.clear_registers()
-    ps = zup.get_register_program()           ;  print(ps)
-    assert ps == 'PS00000'
-
     a_over_max = zup.CUR['MAX'] + 1           ;  print(a_over_max)
     a = zup.CUR['Format'].format(a_over_max)  ;  print(a)
     zup._write_command(':CUR{};'.format(a))
-    ps = zup.get_register_program()           ;  print(ps)
-    assert ps == 'PS00001'
+    zup._write_command(':STP?;')
+    rp = zup._read_response()                 ;  print(rp) # Format is 'PS12345'
+    assert rp[5] == '1'
+    assert rp[6] == '1'
     zup.clear_registers()
-    ps = zup.get_register_program()           ;  print(ps)
-    assert ps == 'PS00000'
+    zup._write_command(':STP?;')
+    rp = zup._read_response()                 ;  print(rp)
+    assert rp[5] == '0'
+    assert rp[6] == '0'
     return None
 
 def test_get_register_alarm(zup: Zup) -> None:
@@ -492,9 +492,11 @@ def test_get_register_program(zup: Zup) -> None:
     zup._write_command(':DCL;')
     rp = zup.get_register_program()  ;  print(rp)
     assert type(rp) == dict
-    for bit in rp.values():
-        assert type(bit) == int
-        assert bit == 0
+    assert rp['not_used'] is None
+    assert type(rp['wrong_command']) == int      ;   assert rp['wrong_command'] == 0
+    assert type(rp['buffer_overflow']) == int   ;   assert rp['buffer_overflow'] == 0
+    assert type(rp['wrong_voltage']) == int     ;   assert rp['wrong_voltage'] == 0
+    assert type(rp['wrong_current']) == int     ;   assert rp['wrong_current'] == 0
     return None
 
 def test_set_remote_mode(zup: Zup) -> None:
