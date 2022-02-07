@@ -493,7 +493,7 @@ def test_get_register_program(zup: Zup) -> None:
     rp = zup.get_register_program()  ;  print(rp)
     assert type(rp) == dict
     assert rp['not_used'] is None
-    assert type(rp['wrong_command']) == int      ;   assert rp['wrong_command'] == 0
+    assert type(rp['wrong_command']) == int     ;   assert rp['wrong_command'] == 0
     assert type(rp['buffer_overflow']) == int   ;   assert rp['buffer_overflow'] == 0
     assert type(rp['wrong_voltage']) == int     ;   assert rp['wrong_voltage'] == 0
     assert type(rp['wrong_current']) == int     ;   assert rp['wrong_current'] == 0
