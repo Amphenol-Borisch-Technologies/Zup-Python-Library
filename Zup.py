@@ -526,18 +526,14 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRV0; if 'Off'
                            :SRV1; if 'On'
-            - Class Zup doesn't implement Service Requests; instead rely upon explicitly querying the Zups for correct operating status, and/or Zup operators
-              noticing if Zups don't function correctly.
-            - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
-              and perform event handling routines to respond to arising Service Requests.
-
-            From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
-             - Since Service Request messages may be sent from any supply at any time,
-               there is a chance they can collide with other messages from other supplies.
-             - Your controller software has to be sophisticated enough to read messages that
-               may come at any time, and to recover if messages are corrupted by collisions.
-             - If you need Service Request messaging, please contact TDK-Lambda for assistance.
-               We can provide several special communication commands and settings that will help with this.
+            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
+              - Since Service Request messages may be sent from any supply at any time,
+                there is a chance they can collide with other messages from other supplies.
+              - Your controller software has to be sophisticated enough to read messages that
+                may come at any time, and to recover if messages are corrupted by collisions.
+              - If you need Service Request messaging, please contact TDK-Lambda for assistance.
+                We can provide several special communication commands and settings that will help with this.
         """
         state = Zup._validate_binary_state(state)
         if state == 'Off':
@@ -561,18 +557,14 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRT0; if 'Off'
                            :SRT1; if 'On'
-            - Class Zup doesn't implement Service Requests; instead rely upon explicitly querying the Zups for correct operating status, and/or Zup operators
-              noticing if Zups don't function correctly.
-            - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
-              and perform event handling routines to respond to arising Service Requests.
-
-            From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
-             - Since Service Request messages may be sent from any supply at any time,
-               there is a chance they can collide with other messages from other supplies.
-             - Your controller software has to be sophisticated enough to read messages that
-               may come at any time, and to recover if messages are corrupted by collisions.
-             - If you need Service Request messaging, please contact TDK-Lambda for assistance.
-               We can provide several special communication commands and settings that will help with this.
+            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
+              - Since Service Request messages may be sent from any supply at any time,
+                there is a chance they can collide with other messages from other supplies.
+              - Your controller software has to be sophisticated enough to read messages that
+                may come at any time, and to recover if messages are corrupted by collisions.
+              - If you need Service Request messaging, please contact TDK-Lambda for assistance.
+                We can provide several special communication commands and settings that will help with this.
         """
         state = Zup._validate_binary_state(state)
         if state == 'Off':
@@ -596,18 +588,14 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRF0; if 'Off'
                            :SRF1; if 'On'
-            - Class Zup doesn't implement Service Requests; instead rely upon explicitly querying the Zups for correct operating status, and/or Zup operators
-              noticing if Zups don't function correctly.
-            - For this library to correctly implement Service Requests, client applications would need to subscribe to notifications of Service Requests,
-              and perform event handling routines to respond to arising Service Requests.
-
-            From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
-             - Since Service Request messages may be sent from any supply at any time,
-               there is a chance they can collide with other messages from other supplies.
-             - Your controller software has to be sophisticated enough to read messages that
-               may come at any time, and to recover if messages are corrupted by collisions.
-             - If you need Service Request messaging, please contact TDK-Lambda for assistance.
-               We can provide several special communication commands and settings that will help with this.
+            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
+              - Since Service Request messages may be sent from any supply at any time,
+                there is a chance they can collide with other messages from other supplies.
+              - Your controller software has to be sophisticated enough to read messages that
+                may come at any time, and to recover if messages are corrupted by collisions.
+              - If you need Service Request messaging, please contact TDK-Lambda for assistance.
+                We can provide several special communication commands and settings that will help with this.
         """
         state = Zup._validate_binary_state(state)
         if state == 'Off':
