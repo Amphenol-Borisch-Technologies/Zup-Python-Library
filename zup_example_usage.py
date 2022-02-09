@@ -92,18 +92,19 @@ for address in (3,4,5):
     zups[address].set_voltage(4.0)
     zups[address].set_amperage(1.0)
 for address in (3,4,5): zups[address].set_power('On')
-i = 4
-while i <= 6.0:
-    for address in (3,4,5): zups[address].set_voltage(i)
-    i += 0.1
-while i >= 4.0:
-    for address in (3,4,5): zups[address].set_voltage(i)
-    i -= 0.1
-# Occasionally it's useful to ramp supplies up/down to ensure that whatever they're powering continues
+volts = 4
+while volts <= 6.0:
+    for address in (3,4,5): zups[address].set_voltage(volts)
+    volts += 0.1
+while volts >= 4.0:
+    for address in (3,4,5): zups[address].set_voltage(volts)
+    volts -= 0.1
+# Occasionally it's useful to ramp power supplies up/down to ensure that whatever they're powering continues
 # working correctly with varying input voltages.  Here input varies as 5.0VDC ±20%.
 
 for address in (3,4,5): zups[address].set_power('Off')
-# zups[1], zups[2] & zups[6] will remain powered after this script terminates.
+# zups[1], zups[2] & zups[6] will remain powered on after this script terminates because they weren't
+# explicitly powered off.
 
 for address in zups: zups[address].set_remote_mode('Remote Unlatched')
 serial_port.close()
