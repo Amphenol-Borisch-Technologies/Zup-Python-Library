@@ -526,7 +526,7 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRV0; if 'Off'
                            :SRV1; if 'On'
-            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - Class Zup supports Service Requests, but SRQ messages are handled by the client application.
             - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
               - Since Service Request messages may be sent from any supply at any time,
                 there is a chance they can collide with other messages from other supplies.
@@ -557,7 +557,7 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRT0; if 'Off'
                            :SRT1; if 'On'
-            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - Class Zup supports Service Requests, but SRQ messages are handled by the client application.
             - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
               - Since Service Request messages may be sent from any supply at any time,
                 there is a chance they can collide with other messages from other supplies.
@@ -588,7 +588,7 @@ class Zup(object):
             Outputs:       None
             ZUP commands:  :SRF0; if 'Off'
                            :SRF1; if 'On'
-            - Class Zup supports Service Requests, but SRQ messages are be handled by the client application.
+            - Class Zup supports Service Requests, but SRQ messages are handled by the client application.
             - From 'TDK-Lambda Genesys Power Supplies User Manual, 83-507-013':
               - Since Service Request messages may be sent from any supply at any time,
                 there is a chance they can collide with other messages from other supplies.
