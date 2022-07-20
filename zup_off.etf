@@ -1,0 +1,18 @@
+RUN pythonw.exe "C:\Program Files\Python310\Lib\site-packages\zup_off.pyw"
+#
+# Requires pythonw.exe be in Environment Variable PATH.
+#
+# The enclosing double quotes (") around the Python Windows script path "C:\Program Files\Python310\Lib\site-packages\zup_off.pyw" are necessary because
+# of the embedded space inside "C:\Program Files".
+#
+#  Usage:  RUN pythonw.exe "C:\Program Files\Python310\Lib\site-packages\zup_off.pyw"
+#
+#  Unequivocally powers off all below 6 TDK-Lambda Zup supplies connected to the Corelis JTAG:
+#         Zup Address       Model
+#         -----------    ------------
+#             1          Zup(10V-20A)
+#             2          Zup(10V-20A)
+#             3          Zup(10V-20A)
+#             4          Zup(20V-10A)
+#             5          Zup(20V-10A)
+#             6          Zup(36V-6A)
