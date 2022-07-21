@@ -7,6 +7,8 @@ pySerial Copyrighted by Chris Liechti.
 
 pytest Copyrighted by Holger Krekel and pytest-dev team.
 
+JTAG Technologies™ is a trademark of JTAG Technologies BV.
+
 ScanExpress™ & ScanExpress Runner™ are trademarks of Corelis, Inc.
 
 Reference: Zup User Manual at https://product.tdk.com/en/system/files?file=dam/doc/product/power/switching-power/prg-power/instruction_manual/zup-user-manual.pdf
@@ -24,4 +26,5 @@ Chapter 5 is especially relevant.
 - Install pySerial: https://pypi.org/project/pyserial/
 - Install Zup.py library from this repository.
 - Modify zup_example_usage.py from this repository as needed.
+  - zup_example_usage.py is applicable to JTAG Technologies usage.
 - For ScanExpress Runner applications, modify zup_ON.* & zup_off.* as needed.
