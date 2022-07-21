@@ -7,6 +7,8 @@ pySerial Copyrighted by Chris Liechti.
 
 pytest Copyrighted by Holger Krekel and pytest-dev team.
 
+ScanExpress™ & ScanExpress Runner™ are trademarks of Corelis, Inc.
+
 Reference: Zup User Manual at https://product.tdk.com/en/system/files?file=dam/doc/product/power/switching-power/prg-power/instruction_manual/zup-user-manual.pdf
 
 Chapter 5 is especially relevant.
