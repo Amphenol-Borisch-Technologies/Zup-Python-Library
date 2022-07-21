@@ -24,3 +24,4 @@ Chapter 5 is especially relevant.
 - Install pySerial: https://pypi.org/project/pyserial/
 - Install Zup.py library from this repository.
 - Modify zup_example_usage.py from this repository as needed.
+- For ScanExpress Runner applications, modify zup_ON.* & zup_off.* as needed.
